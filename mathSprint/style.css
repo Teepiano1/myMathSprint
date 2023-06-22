@@ -1,0 +1,127 @@
+*{
+    margin: 0px; 
+    box-sizing: border-box;
+    padding: 0px; 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.maincontainer {
+    background-color: darkorchid;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.btnContainer {
+    display: flex;
+    width: 20rem;
+    margin: 0 auto;
+}
+img{
+    max-width: 10rem;
+    display: none;
+    margin: 0 auto;
+}
+
+.container {
+    background-color: white;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    text-shadow: 2px 3px 2px black;
+    color: white;
+    font-size: 3rem;
+    margin: 1.3rem;
+}
+
+button {
+    width: 10rem;
+    height: 2rem;
+    margin: 0.5rem auto;
+    border-radius: 0.8rem;
+    font-size: large;
+    cursor: pointer;
+    border: none;
+}
+.wrong{
+    background-color: red;
+}
+.right{
+    background-color: green;
+}
+
+#question{
+    font-size: 7rem;
+    color: darkorchid;
+}
+
+#timer {
+    color: greenyellow;
+    font-size: x-large;
+}
+
+#startgame,
+#gameminute {
+    border: 1px solid black;
+    border-style: dashed;
+    color: darkorchid;
+}
+
+#startgame:hover,
+button:hover,
+#gameminute:hover {
+    color: white;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    background-color: darkorchid
+}
+
+#timeselect,
+#gameminute, #gameover {
+    display: none;
+}
+
+#timeselect{
+    width: 20rem;
+    height: 3rem;
+    font-size: x-large;
+    margin: 0 auto;
+}
+
+@keyframes modalKeyFrame {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes gameKeyFrame {
+    from {
+        transform: translateY(-100px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+
+@media only screen and (max-width: 490px) {
+    #question {
+        font-size: 5rem;
+    }
+    #gameminute, h1, #gameover{
+        font-size: 2.8rem;
+    }
+    .container{
+        max-height: 57%;
+    }
+}
