@@ -3,6 +3,7 @@ let startgame = document.getElementById("startgame")
 let timeSelect = document.getElementById("timeselect")
 let gameMin = document.getElementById("gameminute")
 let image = document.getElementById("img")
+let loading = document.getElementById("loading")
 startgame.addEventListener("click", () => {
     setTimeout(() => {
         startgame.style.display = "none"
@@ -11,14 +12,25 @@ startgame.addEventListener("click", () => {
             timeSelect.style = "animation: gameKeyFrame 0.8s 1; display: block"
             timeSelect.addEventListener("change", theval)
         })
-        
+
         image.style = "animation:gameKeyFrame 0.8s 1; display:block"
-        image.src="./images/good-luck-gif-4.gif"
+        image.src = "./images/good-luck-gif-4.gif"
     }, 500);
 })
+function quesFetch() {
+    gameMin.style.display = "none"
+    timeSelect.style.display = "none"
+    loading.textContent = "Fecthing Questions..."
+    setTimeout(() => {
+        loading.style.display = "none"
+        startGame()
+    }, 2000);
+}
+
 function theval(e) {
     minutes = e.target.value
-    startGame()
+    // startGame()
+    quesFetch()
 }
 function startGame() {
     gameMin.style.display = "none"
@@ -40,42 +52,7 @@ function startGame() {
     let question = document.getElementById("question")
     let scoreupdate = document.getElementById("scoreUpdate")
     let score = 0
-    let randNum = Math.floor(Math.random() * 5)
-    let rand = Math.floor(Math.random() * 5)
-    let ans = Math.floor(Math.random() * 19)
-    let corEquat = "randNum * rand"
-    let sign = randSign[Math.floor(Math.random() * randSign.length)]
-    function solveEquation(equation) {
-        let modifiedEquation = equation.replace("*", sign)
-        let result
-        switch (sign) {
-            case "*":
-                result = eval(modifiedEquation)
-                break;
-            case "+":
-                result = eval(modifiedEquation)
-                break;
-            case "-":
-                result = eval(modifiedEquation)
-                break;
-            case "/":
-                result = eval(modifiedEquation)
-                break;
-
-            default:
-                result = NaN
-                break;
-        }
-        return result
-    }
-    let solution = solveEquation(corEquat)
-    question.textContent = randNum + sign + rand + "=" + ans
-    question.style.animation = "modalKeyFrame 0.8s 1"
-    if (ans === solution) {
-        TF = true
-    } else {
-        TF = false
-    }
+    questions()
     function questions() {
         let randNum = Math.floor(Math.random() * 5)
         let rand = Math.floor(Math.random() * 5)
@@ -117,24 +94,24 @@ function startGame() {
 
     let ques = 1
     let image = document.getElementById("img")
-    scoreupdate.textContent = "score : " + score 
+    scoreupdate.textContent = "score : " + score
     right.addEventListener("click", () => {
-        ques +=1
+        ques += 1
         if (TF === true) {
             console.log("correct");
             score += 1
-            scoreupdate.textContent = "score : " + score 
+            scoreupdate.textContent = "score : " + score
             image.src = "./images/Thumbs Up Good GIF - Thumbs Up Good Good Job - Dis.gif"
         } else {
             console.log("not correct");
-            image.src="./images/ur-wrong.gif"
+            image.src = "./images/ur-wrong.gif"
             image.style.display = "block"
         }
         questions()
     })
 
     wrong.addEventListener("click", () => {
-        ques +=1
+        ques += 1
         if (TF !== true) {
             console.log("yes not correct");
             score += 1
@@ -143,7 +120,7 @@ function startGame() {
 
         } else {
             console.log("no its correct");
-            image.src="./images/a4b237becb291492b93bf20be615204b.gif"
+            image.src = "./images/a4b237becb291492b93bf20be615204b.gif"
         }
         questions()
     })
@@ -163,16 +140,16 @@ function startGame() {
         timerDisplay.style.animation = "gameKeyFrame 0.8s 1"
         if (seconds == 0) {
             clearInterval(timer)
-            image.src= "./images/congrats-15.gif"
+            image.src = "./images/congrats-15.gif"
             let gameover = document.getElementById("gameover")
             gameover.textContent = "Game Over"
-            gameover.style= "display:block; animation: gameKeyFrame 0.8s 1; color: red"
+            gameover.style = "display:block; animation: gameKeyFrame 0.8s 1; color: red"
             timerDisplay.innerHTML = "Time's up"
             question.style.display = "none"
             timerDisplay.style.color = "red"
             right.textContent = "Play Again"
             wrong.style.display = "none"
-            scoreupdate.textContent = "you answered "+ score + " questions correctly" + " out of "+ ques
+            scoreupdate.textContent = "you answered " + score + " questions correctly" + " out of " + ques
             scoreupdate.style.animation = "modalKeyFrame 0.8s 1"
             right.addEventListener("click", () => {
                 location.reload()
